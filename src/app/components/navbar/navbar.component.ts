@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { OauthService } from 'src/app/services/oauth.service';
+import { AngularFireAuth } from '@angular/fire/auth';
 import { Location } from '@angular/common';
 
 @Component({
@@ -9,25 +10,27 @@ import { Location } from '@angular/common';
 })
 export class NavbarComponent implements OnInit {
 
-  constructor(private authService: OauthService, private location: Location) { }
-  public app_name: string = 'Books Store';
-  public isLogged: boolean = false;
+  constructor(private authService: OauthService, private afAuth: AngularFireAuth, private location: Location) { }
+  public appName = 'Books Store';
+  public isLogged = false;
 
   ngOnInit() {
-    this.onCheckUser();
+    this.getCurrentUser();
   }
 
-  onLogout(): void {
-    // this.authService.logoutUser();
-    location.reload();
+  getCurrentUser() {
+    this.authService.isAuth().subscribe(auth => {
+      if (auth) {
+        console.log('user logged');
+        this.isLogged = true;
+      } else {
+        console.log('user not logged');
+        this.isLogged = false;
+      }
+    });
   }
 
-  onCheckUser(): void {
-    // if (this.authService.getCurrentUser() === null) {
-    //   this.isLogged = false;
-    // } else {
-    //   this.isLogged = true;
-    // }
+  onLogout() {
+    this.afAuth.auth.signOut();
   }
-
 }
