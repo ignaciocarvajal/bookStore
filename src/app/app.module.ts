@@ -1,5 +1,18 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { AppRoutingModule } from './app-routing.module';
+import { FormsModule } from '@angular/forms'
+import { AngularFireDatabaseModule } from '@angular/fire/database'
+import { AngularFireModule } from '@angular/fire';
+import { AngularFireAuth } from '@angular/fire/auth';
+
+// external dependency
+import { NgxPopperModule } from 'ngx-popper';
+import { NgxSpinnerModule } from 'ngx-spinner';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+
+//config envirionment
+import { environment } from '../environments/environment'
 
 import { AppComponent } from './app.component';
 import { ListBooksComponent } from './components/admin/list-books/list-books.component';
@@ -12,7 +25,8 @@ import { OffersComponent } from './components/offers/offers.component';
 import { LoginComponent } from './components/users/login/login.component';
 import { ProfileComponent } from './components/users/profile/profile.component';
 import { RegisterComponent } from './components/users/register/register.component';
-import { Page404Component } from './components/users/page404/page404.component';
+import { Page404Component } from './components/page404/page404.component';
+
 
 @NgModule({
   declarations: [
@@ -27,12 +41,21 @@ import { Page404Component } from './components/users/page404/page404.component';
     LoginComponent,
     ProfileComponent,
     RegisterComponent,
-    Page404Component
+    Page404Component,
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    AppRoutingModule,
+    NgxPopperModule,
+    NgxSpinnerModule,
+    NgbModule,
+    FormsModule,
+    AngularFireModule.initializeApp(environment.configFireBase),
+    AngularFireDatabaseModule,
+    
+
   ],
-  providers: [],
+  providers: [AngularFireAuth],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
