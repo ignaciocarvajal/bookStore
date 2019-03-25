@@ -12,7 +12,7 @@ import { OauthService } from '../../../services/oauth.service'
 })
 export class LoginComponent implements OnInit {
 
-  constructor(public afAuth: AngularFireAuth, private router: Router,private  oAuthService : OauthService) { }
+  constructor(public afAuth: AngularFireAuth, private router: Router, private  oAuthService: OauthService) { }
 
   public email : string = '';
   public password : string = '';
@@ -30,29 +30,28 @@ export class LoginComponent implements OnInit {
     }).catch(err => console.log('err', err.message));
   }
 
-  onLoginGoogle() : void {
+  onLoginGoogle(): void {
     this.oAuthService.loginGoogleUser()
     .then((res) => {
       console.log('resUser', res);
       this.onLoginRedirect();
     }).catch(err => console.log('err', err.message));
-   
   }
 
-  onLoginFacebook() : void {
+  onLoginFacebook(): void {
     this.oAuthService.loginFacebookUser()
     .then( (res) => {
       console.log('resUser', res);
       this.onLoginRedirect();
-    }).catch(err => console.log('err', err.message));
-   
+    }).catch(err => console.log('err', err.message)); 
   }
 
   onLogout() {
     this.oAuthService.logoutUser();
+    this.router.navigate(['/']);
   }
 
-  onLoginRedirect() : void {
+  onLoginRedirect(): void {
     this.router.navigate(['admin/list-books']);
   }
 

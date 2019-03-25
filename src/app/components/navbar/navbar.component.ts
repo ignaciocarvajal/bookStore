@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { OauthService } from 'src/app/services/oauth.service';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { Location } from '@angular/common';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-navbar',
@@ -10,7 +11,7 @@ import { Location } from '@angular/common';
 })
 export class NavbarComponent implements OnInit {
 
-  constructor(private authService: OauthService, private afAuth: AngularFireAuth, private location: Location) { }
+  constructor(private authService: OauthService, private afAuth: AngularFireAuth, private location: Location,  private router: Router) { }
   public appName = 'Books Store';
   public isLogged = false;
 
@@ -32,5 +33,6 @@ export class NavbarComponent implements OnInit {
 
   onLogout() {
     this.afAuth.auth.signOut();
+    this.router.navigate(['/']);
   }
 }
