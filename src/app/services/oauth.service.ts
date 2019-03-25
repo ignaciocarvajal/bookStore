@@ -15,7 +15,7 @@ export class OauthService {
       this.afAuth.auth.createUserWithEmailAndPassword(email, pass)
       .then( userData => resolve(userData),
       err => reject(err));
-    } ); 
+    } );
   }
 
   loginEmailUser(email: string, pass: string) {
@@ -35,7 +35,6 @@ export class OauthService {
    return this.afAuth.auth.signOut();
   }
   isAuth() {
-    // tslint:disable-next-line:no-shadowed-variable
     return this.afAuth.authState.pipe(map(auth => auth));
   }
 }

@@ -1,10 +1,11 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
-import { FormsModule } from '@angular/forms'
-import { AngularFireDatabaseModule } from '@angular/fire/database'
+import { FormsModule } from '@angular/forms';
+import { AngularFireDatabaseModule } from '@angular/fire/database';
 import { AngularFireModule } from '@angular/fire';
 import { AngularFireAuth } from '@angular/fire/auth';
+import { AngularFireStorageModule } from '@angular/fire/storage';
 
 // external dependency
 import { NgxPopperModule } from 'ngx-popper';
@@ -12,7 +13,7 @@ import { NgxSpinnerModule } from 'ngx-spinner';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 //config envirionment
-import { environment } from '../environments/environment'
+import { environment } from '../environments/environment';
 
 import { AppComponent } from './app.component';
 import { ListBooksComponent } from './components/admin/list-books/list-books.component';
@@ -52,8 +53,7 @@ import { Page404Component } from './components/page404/page404.component';
     FormsModule,
     AngularFireModule.initializeApp(environment.configFireBase),
     AngularFireDatabaseModule,
-    
-
+    AngularFireStorageModule
   ],
   providers: [AngularFireAuth],
   bootstrap: [AppComponent]
