@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { auth } from 'firebase/app';
-import { Router } from '@angular/router'; 
-import { OauthService } from '../../../services/oauth.service'
+import { Router } from '@angular/router';
+import { OauthService } from 'src/app/services/oauth.service';
 
 
 @Component({
@@ -14,8 +14,8 @@ export class LoginComponent implements OnInit {
 
   constructor(public afAuth: AngularFireAuth, private router: Router, private  oAuthService: OauthService) { }
 
-  public email : string = '';
-  public password : string = '';
+  public email: string = '';
+  public password: string = '';
 
   ngOnInit() {
   }
