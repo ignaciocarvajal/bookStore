@@ -11,7 +11,6 @@ import { NgForm } from '@angular/forms';
 export class ModalComponent implements OnInit {
 
   constructor(private dataApi: DataApiService) { }
-
   @ViewChild('btnClose') btnClose: ElementRef;
   @Input() userUid: string;
   ngOnInit() {
