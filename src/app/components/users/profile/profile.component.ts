@@ -12,21 +12,19 @@ export class ProfileComponent implements OnInit {
 
   constructor(private oAuthService: OauthService) { }
   user: UserInterface = {
-    name : '',
-    email : '',
-    photoUrl : ''
+    name: '',
+    email: '',
+    photoUrl: '',
+    roles: {}
   };
+
   public providerId: string = 'null';
   ngOnInit() {
-    this.oAuthService.isAuth().subscribe( user => {
-      console.log(user);
-      
+    this.oAuthService.isAuth().subscribe(user => {
       if (user) {
         this.user.name = user.displayName;
         this.user.email = user.email;
         this.user.photoUrl = user.photoURL;
-        console.log(this.user.photoUrl);
-        
         this.providerId = user.providerData[0].providerId;
       }
     });

@@ -12,14 +12,16 @@ export class ModalComponent implements OnInit {
 
   constructor(private dataApi: DataApiService) { }
   @ViewChild('btnClose') btnClose: ElementRef;
+  // $('#ID').click(); ---> trigger
   @Input() userUid: string;
   ngOnInit() {
   }
 
   onSaveBook(bookForm: NgForm): void {
+    console.log(bookForm.value);
     if (bookForm.value.id == null) {
       // New 
-      bookForm.value.userUid = this.userUid;
+      // bookForm.value.userUid = this.userUid;
       this.dataApi.addBook(bookForm.value);
     } else {
       // Update
